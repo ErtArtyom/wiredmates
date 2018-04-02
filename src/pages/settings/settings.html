@@ -1,0 +1,28 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>settings</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header>Account Settings</ion-list-header>
+    <button ion-item (click)="profile()">Profile</button>
+    <button ion-item (click)="changeEmail()">Change E-mail Address</button>
+    <button ion-item (click)="changePassword()">Change Password</button>
+    <button ion-item (click)="myRecommendations()">My Recommendations</button>
+    <button ion-item (click)="myFiles()">My Files</button>
+    <button ion-item (click)="myCards()">My Cards</button>
+    <button ion-item (click)="myPosts()">My Posts</button>
+    <button ion-item (click)="recommendedBy()">I’m Recommended by</button>
+    <ion-list-header>Privacy Settings</ion-list-header>
+    <button ion-item (click)="visibility()">Visibility</button>
+    <button ion-item (click)="blockedContacts()">Blocked Contacts</button>
+    <button ion-item (click)="ignoredContacts()">Ignored contacts</button>
+  </ion-list>
+</ion-content>

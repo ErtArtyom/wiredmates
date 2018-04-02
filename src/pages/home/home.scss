@@ -1,3 +1,57 @@
 page-home {
+  .content {
+    background: #F0F0F0;
 
+    .grid {
+      padding: 11px;
+
+      .col {
+        padding: 5px;
+
+        .card {
+          margin: 0;
+          width: 100%;
+          text-align: center;
+          height: 98px;
+          border-radius: 3px;
+          box-shadow: none;
+
+          &.active {
+            background: #032041;
+
+            .card-content p {
+              color: #fff;
+            }
+          }
+          .img {
+            height: 57px;
+            position: relative;
+
+            img {
+              width: auto;
+              margin: auto;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+            }
+          }
+
+          .card-content {
+            padding: 0 0 18px;
+
+            p {
+              font-size: 17px;
+              color: #A1A1A2;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    background: #F0F0F0;
+  }
 }

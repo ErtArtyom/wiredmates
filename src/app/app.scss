@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +12,116 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.button-md, .button-ios {
+  text-transform: initial;
+  font-weight: normal;
+}
+
+.button-large-md, .button-large-ios {
+  font-size: 22px;
+}
+
+.list-md > .item-block:last-child .item-inner,
+.list-md > .item-wrapper:last-child .item-block .item-inner,
+.list-ios > .item-block:last-child .item-inner,
+.list-ios > .item-wrapper:last-child .item-block .item-inner {
+  border-bottom: 0.55px solid #c8c7cc;
+}
+
+.list-md > .item-block:last-child,
+.list-md > .item-wrapper:last-child .item-block,
+.list-ios > .item-block:last-child,
+.list-ios > .item-wrapper:last-child .item-block {
+  border-bottom: 0;
+}
+
+.header {
+  &:after {
+    content: '';
+    display: none;
+  }
+  .toolbar {
+    width: 100%;
+    position: relative;
+
+    .toolbar-background {
+      background: url(../assets/imgs/logo_bg.png);
+    }
+    .logo {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}
+
+.hr {
+  height: 5px;
+  background: color($colors, primary);
+}
+
+.grid {
+  padding: 0;
+
+  .col {
+    padding: 0;
+  }
+}
+
+.input-errors {
+  min-height: 11px;
+  padding: 0 14px;
+
+  &[hidden] {
+    display: block;
+    visibility: hidden;
+  }
+  p {
+    font-size: 9px;
+    margin: 0;
+    padding-top: 1px;
+  }
+}
+
+.list-md:not([no-lines]),
+.list-ios:not([no-lines]) {
+  .item .item-inner {
+    border-bottom: 1px solid rgba(color($colors, primary), 0.52);
+  }
+  .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom: 1px solid color($colors, primary);
+  }
+}
+
+.item-md,
+.item-ios {
+  padding-left: 14px;
+
+  &.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  &.item-input.item-input-has-focus .item-inner,
+  &.item-input.input-has-focus .item-inner {
+    box-shadow: none;
+  }
+  &.item-input.item-input-has-value .item-inner,
+  &.item-input.input-has-value .item-inner {
+    box-shadow: none;
+    color: color($colors, primary);
+  }
+  &.item-input {
+    color: rgba(color($colors, primary), 0.52);
+    font-size: 18px;
+
+    ::placeholder {
+      color: rgba(color($colors, primary), 0.52);
+    }
+  }
+  .text-input-md,
+  .text-input-ios {
+    margin: 12px 0;
+  }
+}

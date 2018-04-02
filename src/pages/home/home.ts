@@ -7,8 +7,36 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor (public navCtrl: NavController) {
 
   }
 
+  exchange () {
+
+  }
+
+
+  addMate () {
+
+  }
+
+  myWires () {
+
+  }
+
+  myMates () {
+
+  }
+
+  myCards () {
+
+  }
+
+  inbox () {
+
+  }
+
+  createCard () {
+
+  }
 }

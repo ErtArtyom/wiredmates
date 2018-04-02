@@ -1,0 +1,17 @@
+page-main {
+  .header {
+    .toolbar {
+      height: 315px;
+    }
+  }
+  ion-content {
+    background: #E7EEF4 !important;
+    .button {
+      height: 97px;
+      border-radius: 0;
+      border: 0;
+      margin: 0 0 1px;
+      background: #fff;
+    }
+  }
+}

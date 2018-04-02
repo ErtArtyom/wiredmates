@@ -1,0 +1,120 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <div class="segment">
+      <div class="segment-button" [ngClass]="{'active': step >= 1}">1 <span class="segment-line"></span></div>
+      <div class="segment-button" [ngClass]="{'active': step >= 2}">2 <span class="segment-line"></span></div>
+      <div class="segment-button" [ngClass]="{'active': step >= 3}">3 <span class="segment-line"></span></div>
+    </div>
+  </ion-navbar>
+</ion-header>
+<ion-content [ngClass]="{'enable-bg': step === 2}">
+  <div [ngSwitch]="step" class="steps">
+    <div *ngSwitchCase="1">
+      <form [formGroup]="signUpForm" (ngSubmit)="signUpFormSubmit()" id="signUpForm">
+        <ion-list>
+          <ion-item>
+            <ion-input type="text" formControlName="firstName" placeholder="First Name"
+                       required></ion-input>
+            <ion-icon name="checkmark" item-end *ngIf="signUpForm.get('firstName').valid"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="middleName" placeholder="Middle or initials"></ion-input>
+            <ion-icon name="checkmark" item-end
+                      *ngIf="signUpForm.get('middleName').valid && signUpForm.get('middleName').value.length"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="lastName" placeholder="Last name"
+                       required></ion-input>
+            <ion-icon name="checkmark" item-end *ngIf="signUpForm.get('lastName').valid"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input type="email" formControlName="email" placeholder="E-mail"
+                       required></ion-input>
+            <ion-icon name="checkmark" item-end *ngIf="signUpForm.get('email').valid"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input type="password" formControlName="password" placeholder="Password"
+                       required autocomplete="off"></ion-input>
+            <ion-icon name="checkmark" item-end *ngIf="signUpForm.get('password').valid"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input type="password" formControlName="passwordConf" placeholder="Confirm password"
+                       required autocomplete="off"></ion-input>
+            <ion-icon name="checkmark" item-end *ngIf="signUpForm.get('passwordConf').valid"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </form>
+    </div>
+    <div *ngSwitchCase="2">
+      <div class="verification-container">
+        <div>
+          <p>
+            We have just sent an e-mail to e-mail address you specified during the registration process.
+          </p>
+          <p>
+            Please enter the code you received in the field below.
+          </p>
+        </div>
+        <ion-input type="text" placeholder="XXX-XXX" maxlength="6" [(ngModel)]="verificationCode"
+                   (ngModelChange)="verificationCodeChange($event)"></ion-input>
+        <div>
+          <p>
+            didn't received code ?
+          </p>
+          <button ion-button small round (click)="resendVerificationCode()">Re-send</button>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="3">
+      <div class="user-type-container">
+        <ion-list radio-group no-lines [(ngModel)]="userType">
+          <ion-item>
+            <ion-radio value="m" item-left></ion-radio>
+            <ion-label>Personal</ion-label>
+          </ion-item>
+          <p [ngClass]="{'active': userType === 'm'}">
+            Select this option if you intend to use this application as a consumer without a detailed profile.
+          </p>
+          <ion-item>
+            <ion-radio value="p" item-left></ion-radio>
+            <ion-label>Business</ion-label>
+          </ion-item>
+          <p *ngIf="userType === 'm'">
+            Select this option if you intend to create a business card and detailed profile to show your occupation,
+            skills, talent and personality to your potential audience.
+          </p>
+        </ion-list>
+        <ion-list *ngIf="userType === 'p'">
+          <ion-item>
+            <ion-input type="text" placeholder="Company Name" [(ngModel)]="organization"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" placeholder="Occupation" [(ngModel)]="occupation"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div class="terms-conditions">
+          <ion-item>
+            <ion-label>I agree to <a href="https://www.wiredmates.com/" target="_blank">terms &
+              conditions</a></ion-label>
+            <ion-checkbox [(ngModel)]="agreeTermsConditions"></ion-checkbox>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer *ngIf="step != 2">
+  <ion-toolbar>
+    <button ion-button full *ngIf="step === 1" form="signUpForm">Next</button>
+    <button ion-button full *ngIf="step === 3" (click)="registerUserType()">Complete</button>
+    <!--<button ion-button full (click)="onNext()" [disabled]="step === 2">-->
+    <!--{{ step === 1 ? 'Next' : 'Complete' }}-->
+    <!--</button>-->
+  </ion-toolbar>
+</ion-footer>

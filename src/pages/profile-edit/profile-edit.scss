@@ -1,0 +1,48 @@
+page-profile-edit {
+  .content {
+    .profile-image {
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      top: 0;
+      width: 115px;
+      height: 135px;
+      padding: 15px;
+      background: white;
+      cursor: pointer;
+
+      img {
+        width: 85px;
+        height: 85px;
+      }
+      .image-cover {
+        background: rgba(#032041, .40);
+        position: absolute;
+        width: 85px;
+        height: 85px;
+        left: 15px;
+        top: 15px;
+        border-radius: 100%;
+
+        .icon {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          color: white;
+          font-size: 30px;
+          width: 30px;
+          height: 30px;
+          text-align: center;
+        }
+      }
+      p {
+        text-align: center;
+        font-size: 16px;
+        margin: 8px 0;
+      }
+    }
+  }
+}

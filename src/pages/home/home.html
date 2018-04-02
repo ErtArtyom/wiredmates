@@ -3,15 +3,85 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="exchange()" class="active">
+          <div class="img">
+            <img src="assets/imgs/exchange.png">
+          </div>
+          <ion-card-content>
+            <p>The Exchange</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="addMate()" class="active">
+          <div class="img">
+            <img src="assets/imgs/add_mate.png">
+          </div>
+          <ion-card-content>
+            <p>Add Mate</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="myWires()">
+          <div class="img">
+            <img src="assets/imgs/my_wires.png">
+          </div>
+          <ion-card-content>
+            <p>My Wires</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="myMates()">
+          <div class="img">
+            <img src="assets/imgs/my_mates.png">
+          </div>
+          <ion-card-content>
+            <p>my Mates</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="myCards()">
+          <div class="img">
+            <img src="assets/imgs/my_cards.png">
+          </div>
+          <ion-card-content>
+            <p>my Cards</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="inbox()">
+          <div class="img">
+            <img src="assets/imgs/inbox.png">
+          </div>
+          <ion-card-content>
+            <p>Inbox</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 offset-6>
+        <ion-card (click)="createCard()" class="active">
+          <div class="img">
+            <img src="assets/imgs/create_card.png">
+          </div>
+          <ion-card-content>
+            <p>Create Card</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
