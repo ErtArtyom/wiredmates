@@ -29,6 +29,7 @@ import { MatesSearchPage } from '../pages/mates-search/mates-search';
 import { HttpModule } from '@angular/http';
 import { MessagesRoomPage } from '../pages/messages-room/messages-room';
 import { CallNumber } from '@ionic-native/call-number';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 @NgModule({
   declarations: [
@@ -83,8 +84,10 @@ import { CallNumber } from '@ionic-native/call-number';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    {provide: Camera, useClass: CameraMock},
+    // {provide: Camera, useClass: CameraMock},
+    Camera,
     CallNumber,
+    LaunchNavigator,
   ]
 })
 export class AppModule {}

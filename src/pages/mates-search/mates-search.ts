@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Events, NavController, NavParams } from 'ionic-angular';
+import { Events, NavController, NavParams, Platform } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Card } from '../../models/card';
 import { RequestData } from '../../models/request-data';
 import { MessagesRoomPage } from '../messages-room/messages-room';
 import { CallNumber } from '@ionic-native/call-number';
+import { LaunchNavigatorOptions, LaunchNavigator } from '@ionic-native/launch-navigator';
 
 /**
  * Generated class for the MatesSearchPage page.
@@ -27,11 +28,15 @@ export class MatesSearchPage {
                public navParams: NavParams,
                private auth: AuthProvider,
                private events: Events,
-               private callNumber: CallNumber) {
+               private callNumber: CallNumber,
+               private launchNavigator: LaunchNavigator,
+               private platform: Platform) {
     this.searchQuery = this.navParams.data.searchQuery || 'test';
     this.listHeaderChar = '';
 
     this.searchMates();
+
+
   }
 
   ionViewDidLoad () {
@@ -42,7 +47,18 @@ export class MatesSearchPage {
     });
 
     this.events.subscribe('mate:navigate', (card: Card) => {
-      // console.log(card);
+      console.log(card);
+
+      let options: LaunchNavigatorOptions = {
+        start: 'London, ON',
+        app: this.launchNavigator.APP.GOOGLE_MAPS
+      };
+
+      this.platform.ready().then(() => {
+        this.launchNavigator.navigate('Toronto, ON', options)
+          .then(success => alert('Launched navigator'),
+            error => alert(error));
+      });
     });
 
     this.events.subscribe('mate:call', (card: Card) => {
