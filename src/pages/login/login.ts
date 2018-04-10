@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { TabsPage } from '../tabs/tabs';
+import { RequestData } from '../../models/request-data';
 
 /**
  * Generated class for the LoginPage page.
@@ -11,7 +12,6 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -45,28 +45,18 @@ export class LoginPage {
     });
     loading.present();
 
-    const user = {
-      action: 'login',
+    this.auth.signIn({
       username: this.signInForm.get('email').value,
-      password: this.signInForm.get('password').value,
-    };
-
-    this.auth.signIn(user)
-      .subscribe((data: any) => {
+      password: this.signInForm.get('password').value
+    })
+      .subscribe((data: RequestData) => {
         loading.dismiss();
 
-        if (data.e) {
-          let alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: data.d,
-            buttons: ['Ok']
-          });
-          alert.present();
-        } else {
+        if (data) {
           this.auth.storeUserData(data.token, data.user);
 
           this.navCtrl.setRoot(TabsPage);
         }
-      }, err => console.log(err));
+      });
   }
 }

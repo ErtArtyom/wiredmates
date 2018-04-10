@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuthProvider, User } from '../../providers/auth/auth';
+import { AuthProvider } from '../../providers/auth/auth';
 import { ProfileEditPage } from '../profile-edit/profile-edit';
+import { User } from '../../models/user';
 
 /**
  * Generated class for the ProfilePage page.
@@ -10,7 +11,6 @@ import { ProfileEditPage } from '../profile-edit/profile-edit';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',

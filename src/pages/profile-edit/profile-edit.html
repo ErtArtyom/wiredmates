@@ -7,6 +7,9 @@
 <ion-header>
   <ion-navbar>
     <ion-title>profile-edit</ion-title>
+    <ion-buttons end>
+      <button ion-button form="profileEditForm">Save</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -45,8 +48,7 @@
         <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('occupation').valid"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-input type="text" formControlName="phone" placeholder="Phone"
-                   required></ion-input>
+        <ion-input type="tel" formControlName="phone" placeholder="Phone" required></ion-input>
         <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('phone').valid"></ion-icon>
       </ion-item>
       <ion-item>

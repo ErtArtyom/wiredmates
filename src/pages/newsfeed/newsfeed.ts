@@ -8,17 +8,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-newsfeed',
   templateUrl: 'newsfeed.html',
 })
 export class NewsfeedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor (public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad () {
     console.log('ionViewDidLoad NewsfeedPage');
   }
 

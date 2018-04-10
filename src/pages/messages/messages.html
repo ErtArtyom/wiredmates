@@ -6,17 +6,20 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>messages</ion-title>
+    <ion-title>Recent Messages</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let message of messages" (click)="openMessage(message)">
       <ion-avatar item-start>
         <img src="assets/imgs/avatar.png">
       </ion-avatar>
       <h2>Gail Stone</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
+      <p>{{ message.message }}</p>
     </ion-item>
   </ion-list>
+  <div class="more">
+    <button ion-button (click)="moreMessages()">More</button>
+  </div>
 </ion-content>

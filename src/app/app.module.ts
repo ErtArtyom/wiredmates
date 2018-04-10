@@ -24,6 +24,11 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { Camera } from '@ionic-native/camera';
 import { CameraMock } from '@ionic-native-mocks/camera';
+import { MatesPage } from '../pages/mates/mates';
+import { MatesSearchPage } from '../pages/mates-search/mates-search';
+import { HttpModule } from '@angular/http';
+import { MessagesRoomPage } from '../pages/messages-room/messages-room';
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
   declarations: [
@@ -38,15 +43,19 @@ import { CameraMock } from '@ionic-native-mocks/camera';
     WelcomePage,
     NewsfeedPage,
     MessagesPage,
+    MessagesRoomPage,
     AlertsPage,
     SettingsPage,
     ProfilePage,
     ProfileEditPage,
+    MatesPage,
+    MatesSearchPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,10 +70,13 @@ import { CameraMock } from '@ionic-native-mocks/camera';
     WelcomePage,
     NewsfeedPage,
     MessagesPage,
+    MessagesRoomPage,
     AlertsPage,
     SettingsPage,
     ProfilePage,
     ProfileEditPage,
+    MatesPage,
+    MatesSearchPage,
   ],
   providers: [
     StatusBar,
@@ -72,6 +84,7 @@ import { CameraMock } from '@ionic-native-mocks/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     {provide: Camera, useClass: CameraMock},
+    CallNumber,
   ]
 })
 export class AppModule {}

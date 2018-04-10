@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
-import { AuthProvider, User } from '../../providers/auth/auth';
+import { AuthProvider } from '../../providers/auth/auth';
+import { User } from '../../models/user';
 
 /**
  * Generated class for the SettingsPage page.
@@ -10,7 +11,6 @@ import { AuthProvider, User } from '../../providers/auth/auth';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',

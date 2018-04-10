@@ -1,1 +1,63 @@
 <ion-nav [root]="rootPage"></ion-nav>
+<div class="action-sheet" [ngClass]="{'active': activeCard}" (click)="resetActiveCard($event)">
+  <div class="sheet-effect" id="sheet-effect">
+    <div class="sheet">
+      <div class="sheet-info">
+        <div class="sheet-top">
+          <div class="avatar"><img src="assets/imgs/avatar.png" alt="avatar"></div>
+          <div class="sheet-top-info">
+            <h3>Nicole Brown</h3>
+            <p>18 Mates</p>
+          </div>
+        </div>
+        <div class="sheet-bottom">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-3>
+                <ion-card (click)="mateSheetAction('recommend')">
+                  <div class="img">
+                    <img src="assets/imgs/action-star.png">
+                  </div>
+                  <ion-card-content>
+                    <p>Recommend</p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-3>
+                <ion-card (click)="mateSheetAction('navigate')">
+                  <div class="img">
+                    <img src="assets/imgs/action-send.png">
+                  </div>
+                  <ion-card-content>
+                    <p>Navigate</p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-3>
+                <ion-card (click)="mateSheetAction('call')">
+                  <div class="img">
+                    <img src="assets/imgs/action-call.png">
+                  </div>
+                  <ion-card-content>
+                    <p>Call</p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-3>
+                <ion-card (click)="mateSheetAction('message')">
+                  <div class="img">
+                    <img src="assets/imgs/action-message.png">
+                  </div>
+                  <ion-card-content>
+                    <p>Message</p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+      <button ion-button color="light" block large text-center (click)="resetActiveCard()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,6 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-main',
   templateUrl: 'main.html',
@@ -27,11 +26,17 @@ export class MainPage {
     console.log('ionViewDidLoad MainPage');
   }
 
-  onSignup () {
+  /**
+   * Go to RegisterPage
+   */
+  signup (): void {
     this.navCtrl.push(RegisterPage);
   }
 
-  onLogin () {
+  /**
+   * Go to LoginPage
+   */
+  login (): void {
     this.navCtrl.setRoot(LoginPage);
   }
 }

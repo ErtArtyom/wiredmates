@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MatesPage } from '../mates/mates';
+import { MatesSearchPage } from '../mates-search/mates-search';
 
 @Component({
   selector: 'page-home',
@@ -15,9 +17,8 @@ export class HomePage {
 
   }
 
-
   addMate () {
-
+    this.navCtrl.push(MatesSearchPage);
   }
 
   myWires () {
@@ -25,7 +26,7 @@ export class HomePage {
   }
 
   myMates () {
-
+    this.navCtrl.push(MatesPage);
   }
 
   myCards () {

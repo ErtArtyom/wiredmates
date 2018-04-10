@@ -3,6 +3,7 @@ import { AlertController, IonicPage, LoadingController, NavController, NavParams
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { WelcomePage } from '../welcome/welcome';
+import { RequestData } from '../../models/request-data';
 
 /**
  * Generated class for the RegisterPage page.
@@ -11,7 +12,6 @@ import { WelcomePage } from '../welcome/welcome';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -104,31 +104,21 @@ export class RegisterPage {
     });
     loading.present();
 
-    const user = {
-      action: 'register',
+    this.auth.signUp({
       firstName: this.signUpForm.get('firstName').value,
       middleName: this.signUpForm.get('middleName').value,
       lastName: this.signUpForm.get('lastName').value,
       email: this.signUpForm.get('email').value,
       password: this.signUpForm.get('password').value,
       passwordConf: this.signUpForm.get('passwordConf').value
-    };
-
-    this.auth.signUp(user)
-      .subscribe((data: any) => {
+    })
+      .subscribe((data: RequestData) => {
         loading.dismiss();
 
-        if (data.e) {
-          let alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: data.d,
-            buttons: ['Ok']
-          });
-          alert.present();
-        } else {
+        if (data) {
           this.step = 2;
         }
-      }, err => console.log(err));
+      });
   }
 
   verificationCodeChange (code) {
@@ -138,27 +128,17 @@ export class RegisterPage {
       });
       loading.present();
 
-      const code = {
-        action: 'verification',
+      this.auth.verify({
         email: this.signUpForm.get('email').value,
         verificationCode: this.verificationCode
-      };
-
-      this.auth.verify(code)
-        .subscribe((data: any) => {
+      })
+        .subscribe((data: RequestData) => {
           loading.dismiss();
 
-          if (data.e) {
-            let alert = this.alertCtrl.create({
-              title: 'Error',
-              subTitle: data.d,
-              buttons: ['Ok']
-            });
-            alert.present();
-          } else {
+          if (data) {
             this.step = 3;
           }
-        }, err => console.log(err));
+        });
     }
   }
 
@@ -168,24 +148,10 @@ export class RegisterPage {
     });
     loading.present();
 
-    const code = {
-      action: 'resendVerificationCode',
-      email: this.signUpForm.get('email').value,
-    };
-
-    this.auth.resendVerificationCode(code)
-      .subscribe((data: any) => {
+    this.auth.resendVerificationCode(this.signUpForm.get('email').value)
+      .subscribe(() => {
         loading.dismiss();
-
-        if (data.e) {
-          let alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: data.d,
-            buttons: ['Ok']
-          });
-          alert.present();
-        }
-      }, err => console.log(err));
+      });
   }
 
   registerUserType () {
@@ -194,27 +160,17 @@ export class RegisterPage {
     });
     loading.present();
 
-    const type = {
-      action: 'registerUserType',
+    this.auth.registerUserType({
       email: this.signUpForm.get('email').value,
       type: this.userType,
       organization: this.organization,
       occupation: this.occupation,
       agree: this.agreeTermsConditions,
-    };
-
-    this.auth.registerUserType(type)
-      .subscribe((data: any) => {
+    })
+      .subscribe((data: RequestData) => {
         loading.dismiss();
 
-        if (data.e) {
-          let alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: data.d,
-            buttons: ['Ok']
-          });
-          alert.present();
-        } else {
+        if (data) {
           this.navCtrl.setRoot(WelcomePage);
         }
       }, err => console.log(err));
