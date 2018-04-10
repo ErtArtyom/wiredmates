@@ -57,6 +57,7 @@ export class MatesSearchPage {
       this.navCtrl.push(MessagesRoomPage, {
         toUserId: card.userID
       });
+
     });
   }
 
