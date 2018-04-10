@@ -49,8 +49,8 @@ export class MatesSearchPage {
       console.log(card);
 
       this.callNumber.callNumber('18001010101', true)
-        .then(res => console.log('Launched dialer!', res))
-        .catch(err => console.log('Error launching dialer', err));
+        .then(res => alert(res))
+        .catch(err => alert(err));
     });
 
     this.events.subscribe('mate:message', (card: Card) => {
