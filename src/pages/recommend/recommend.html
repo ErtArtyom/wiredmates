@@ -1,0 +1,45 @@
+<!--
+  Generated template for the RecommendPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <div class="recommend">
+    <ion-list>
+      <ion-item *ngIf="recommendations.recBy1">
+        <ion-label>{{ recommendations.recBy1 }}</ion-label>
+        <ion-checkbox [(ngModel)]="recommend.recBy1" item-right></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="recommendations.recBy2">
+        <ion-label>{{ recommendations.recBy2 }}</ion-label>
+        <ion-checkbox [(ngModel)]="recommend.recBy2" item-right></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="recommendations.recBy3">
+        <ion-label>{{ recommendations.recBy3 }}</ion-label>
+        <ion-checkbox [(ngModel)]="recommend.recBy3" item-right></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="recommendations.recBy4">
+        <ion-label>{{ recommendations.recBy4 }}</ion-label>
+        <ion-checkbox [(ngModel)]="recommend.recBy4" item-right></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="recommendations.recBy5">
+        <ion-label>{{ recommendations.recBy5 }}</ion-label>
+        <ion-checkbox [(ngModel)]="recommend.recBy5" item-right></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button block (click)="cancel()">Cancel</button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button block (click)="confirm(1)">Confirm</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button ion-button outline (click)="confirm(-1)" *ngIf="user.recommendationsByMe[card.id][toCard.id]">
+      Remove recommendation
+    </button>
+  </div>
+</ion-content>

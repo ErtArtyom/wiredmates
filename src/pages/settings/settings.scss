@@ -1,3 +1,18 @@
 page-settings {
-
+  .footer {
+    &:before {
+      display: none;
+    }
+  }
+  .toolbar {
+    padding: 0;
+    border: 0;
+  }
+  .toolbar-background {
+    background: none;
+  }
+  .log-out {
+    border: none;
+    font-size: 18px;
+  }
 }

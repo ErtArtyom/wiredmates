@@ -1,0 +1,12 @@
+<!-- Generated template for the ProfileBlockComponent component -->
+<div class="profile-block" (click)="profileBlockClick()">
+  <h2>{{ card.firstName }}</h2>
+  <h2>{{ card.lastName }}</h2>
+  <p *ngIf="isProfessional(user) && card.occupationMode">{{ card.occupation }}</p>
+  <p *ngIf="isProfessional(user) && card.organizationMode">{{ card.organization }}</p>
+  <div class="avatar-border">
+    <div>
+      <profile-image [card]="card"></profile-image>
+    </div>
+  </div>
+</div>

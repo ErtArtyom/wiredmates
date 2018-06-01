@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { RegisterPage } from '../register/register';
-import { AuthProvider } from '../../providers/auth/auth';
-import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the MainPage page.

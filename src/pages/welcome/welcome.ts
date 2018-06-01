@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
+import { NavController, NavParams } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the WelcomePage page.
@@ -15,7 +15,8 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class WelcomePage {
 
-  constructor (public navCtrl: NavController, public navParams: NavParams) {
+  constructor (public navCtrl: NavController,
+               public navParams: NavParams) {
   }
 
   ionViewDidLoad () {
@@ -23,6 +24,6 @@ export class WelcomePage {
   }
 
   goToHomePage () {
-    this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 }

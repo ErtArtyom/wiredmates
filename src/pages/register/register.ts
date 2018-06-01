@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { WelcomePage } from '../welcome/welcome';
@@ -35,22 +35,10 @@ export class RegisterPage {
     this.userType = 'm';
 
     this.createSignUpForm();
-
-    // this.deleteAccount();
   }
 
   ionViewDidLoad () {
     console.log('ionViewDidLoad RegisterPage');
-  }
-
-  deleteAccount () {
-    this.auth.deleteAccount({
-      action: 'deleteMyAccount',
-      username: 'arsenbabajanyan95@gmail.com',
-      password: '12345678',
-    }).subscribe((data: any) => {
-      console.log(data);
-    });
   }
 
   createSignUpForm () {

@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ProfileMediasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ card.firstName }} {{ card.lastName.charAt(0) }}.</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="edit()" *ngIf="!editing">Edit</button>
+      <button ion-button form="mediasForm" *ngIf="editing">Save</button>
+    </ion-buttons>
+  </ion-navbar>
+  <div class="hr"></div>
+</ion-header>
+<ion-content>
+  <form [formGroup]="mediasForm" (ngSubmit)="mediasFormSubmit()" id="mediasForm">
+    <div formArrayName="medias">
+      <h2 class="list-title">Media</h2>
+      <ion-grid class="file-grid">
+        <ion-row>
+          <ion-col col-6 *ngFor="let media of mediasForm.get('medias').controls; let i = index; let l = last">
+            <ion-card [formGroupName]="i">
+              <ion-card-content>
+                <i *ngIf="editing" (click)="removeMedia(media)"></i>
+                <img src="assets/icon/file.png" alt="file">
+                <ion-input type="text" formControlName="title" [disabled]="!editing"></ion-input>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6 *ngIf="editing">
+            <ion-card class="active" (click)="uploadInput.click()">
+              <ion-card-content>
+                <img src="assets/icon/plus.png" alt="file">
+                <p>Upload Media</p>
+                <input type="file" (change)="uploadMedia($event); uploadInput.value = ''" #uploadInput>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </form>
+</ion-content>

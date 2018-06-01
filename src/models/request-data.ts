@@ -1,4 +1,5 @@
 import { Card } from './card';
+import { FileP } from './file-p';
 import { User } from './user';
 import { Message } from './message';
 import { Notify } from './notify';
@@ -6,10 +7,12 @@ import { Notify } from './notify';
 export class RequestData {
   e: number;
   d: string;
-  cards?: Card[];
   user?: User;
+  cards?: Card[];
+  contact?: Card;
   messages?: Message[];
-  notifications?: Notify[];
+  data?: any[] | any;
   lastID?: number;
+  more?: number;
   token?: string;
 }

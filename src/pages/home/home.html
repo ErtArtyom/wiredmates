@@ -1,9 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      <profile-title [card]="card"></profile-title>
+    </ion-title>
   </ion-navbar>
+  <div class="hr"></div>
 </ion-header>
 <ion-content>
+  <profile-block [card]="card" [user]="user" (action)="goProfile()"></profile-block>
   <ion-grid>
     <ion-row>
       <ion-col col-6>
@@ -16,13 +20,23 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col col-6>
+      <ion-col col-6 *ngIf="isMate(user)">
         <ion-card (click)="addMate()" class="active">
           <div class="img">
             <img src="assets/imgs/add_mate.png">
           </div>
           <ion-card-content>
             <p>Add Mate</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 *ngIf="isProfessional(user)">
+        <ion-card (click)="myProfiles()" class="active">
+          <div class="img">
+            <img src="assets/imgs/create_card.png">
+          </div>
+          <ion-card-content>
+            <p>My Profiles</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -44,44 +58,44 @@
             <img src="assets/imgs/my_mates.png">
           </div>
           <ion-card-content>
-            <p>my Mates</p>
+            <p>My Mates</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <ion-card (click)="myCards()">
-          <div class="img">
-            <img src="assets/imgs/my_cards.png">
-          </div>
-          <ion-card-content>
-            <p>my Cards</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6>
-        <ion-card (click)="inbox()">
-          <div class="img">
-            <img src="assets/imgs/inbox.png">
-          </div>
-          <ion-card-content>
-            <p>Inbox</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6 offset-6>
-        <ion-card (click)="createCard()" class="active">
-          <div class="img">
-            <img src="assets/imgs/create_card.png">
-          </div>
-          <ion-card-content>
-            <p>Create Card</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+    <!--<ion-row>-->
+    <!--<ion-col col-6>-->
+    <!--<ion-card (click)="myCards()">-->
+    <!--<div class="img">-->
+    <!--<img src="assets/imgs/my_cards.png">-->
+    <!--</div>-->
+    <!--<ion-card-content>-->
+    <!--<p>my Cards</p>-->
+    <!--</ion-card-content>-->
+    <!--</ion-card>-->
+    <!--</ion-col>-->
+    <!--<ion-col col-6>-->
+    <!--<ion-card (click)="inbox()">-->
+    <!--<div class="img">-->
+    <!--<img src="assets/imgs/inbox.png">-->
+    <!--</div>-->
+    <!--<ion-card-content>-->
+    <!--<p>Inbox</p>-->
+    <!--</ion-card-content>-->
+    <!--</ion-card>-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
+    <!--<ion-row>-->
+    <!--<ion-col col-6 offset-6>-->
+    <!--<ion-card (click)="createCard()" class="active">-->
+    <!--<div class="img">-->
+    <!--<img src="assets/imgs/create_card.png">-->
+    <!--</div>-->
+    <!--<ion-card-content>-->
+    <!--<p>Create Card</p>-->
+    <!--</ion-card-content>-->
+    <!--</ion-card>-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
   </ion-grid>
 </ion-content>

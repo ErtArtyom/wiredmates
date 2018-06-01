@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { RequestData } from '../../models/request-data';
+import { User } from '../../models/user';
+import { LoginPage } from '../login/login';
+import { MatesPage } from '../mates/mates';
+import { MyProfilesPage } from '../my-profiles/my-profiles';
 import { ProfilePage } from '../profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
-import { User } from '../../models/user';
 
 /**
  * Generated class for the SettingsPage page.
@@ -16,7 +20,8 @@ import { User } from '../../models/user';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  user: User;
+  public user: User;
+  public isProfessional = User.isProfessional;
 
   constructor (public navCtrl: NavController,
                public navParams: NavParams,
@@ -29,7 +34,34 @@ export class SettingsPage {
   }
 
   profile () {
-    this.navCtrl.push(ProfilePage, {user: this.user});
+    this.navCtrl.push(ProfilePage, {
+      card: User.defaultCard(this.user),
+      id: this.user.id
+    });
+  }
+
+  profiles () {
+    this.navCtrl.push(MyProfilesPage);
+  }
+
+  mates () {
+    this.navCtrl.push(MatesPage);
+  }
+
+  wires () {
+
+  }
+
+  posts () {
+
+  }
+
+  dashboard () {
+
+  }
+
+  sharedInfo () {
+
   }
 
   changeEmail () {
@@ -40,37 +72,34 @@ export class SettingsPage {
 
   }
 
-  myRecommendations () {
+  availability () {
 
   }
 
-  myFiles () {
+  appearanceRange () {
 
   }
 
-  myCards () {
+  ignoreRecommendations () {
 
   }
 
-  myPosts () {
+  blockedProfiles () {
 
   }
 
-  recommendedBy () {
+  recallWiresCard () {
 
   }
 
-  visibility () {
+  logOut () {
+    this.auth.logOut()
+      .subscribe((data: RequestData) => {
+        if (data) {
+          this.navCtrl.setRoot(LoginPage);
 
+          this.auth.storeUserData();
+        }
+      });
   }
-
-  blockedContacts () {
-
-  }
-
-  ignoredContacts () {
-
-  }
-
-
 }

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Events, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { RequestData } from '../../models/request-data';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Card } from '../../models/card';
 import { User } from '../../models/user';
+import { GlobalProvider } from '../../providers/global/global';
 import { MatesSearchPage } from '../mates-search/mates-search';
+import { MessagesRoomPage } from '../messages-room/messages-room';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the MatesPage page.
@@ -20,21 +24,52 @@ export class MatesPage {
   public user: User;
   public searchQuery: string;
   public cards: Card[];
-
-  private listHeaderChar: string;
+  public alphas: string[];
 
   constructor (public navCtrl: NavController,
                public navParams: NavParams,
-               private auth: AuthProvider) {
+               private auth: AuthProvider,
+               private loadingCtrl: LoadingController,
+               private events: Events) {
     this.user = this.auth.user;
     this.searchQuery = '';
-    this.listHeaderChar = '';
 
-    this.setDefaultMates();
+    this.getMyCards();
   }
 
   ionViewDidLoad () {
     console.log('ionViewDidLoad MatesPage');
+
+    this.events.subscribe('mate:recommend', (card: Card) => {
+      this.navCtrl.push(ProfilePage, {
+        card: card
+      });
+    });
+
+    this.events.subscribe('mate:navigate', (card: Card) => {
+      // let options: LaunchNavigatorOptions = {
+      //   start: 'London, ON',
+      //   app: this.launchNavigator.APP.GOOGLE_MAPS
+      // };
+      //
+      // this.platform.ready().then(() => {
+      //   this.launchNavigator.navigate('Toronto, ON', options)
+      //     .then(success => alert('Launched navigator'),
+      //       error => alert(error));
+      // });
+    });
+
+    this.events.subscribe('mate:call', (card: Card) => {
+      // this.callNumber.callNumber('18001010101', true)
+      //   .then(res => alert(res))
+      //   .catch(err => alert(err));
+    });
+
+    this.events.subscribe('mate:message', (card: Card) => {
+      this.navCtrl.push(MessagesRoomPage, {
+        toCard: card
+      });
+    });
   }
 
   /**
@@ -46,6 +81,8 @@ export class MatesPage {
         .filter(card => card.firstName.trim()
           .toLowerCase()
           .search(this.searchQuery.trim().toLowerCase()) !== -1);
+
+      this.alphas = GlobalProvider.createAlphas(this.cards);
     }
   }
 
@@ -54,6 +91,25 @@ export class MatesPage {
    */
   setDefaultMates (): void {
     this.cards = this.user.cards;
+
+    this.alphas = GlobalProvider.createAlphas(this.cards);
+  }
+
+  getMyCards (): void {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+
+    this.auth.getMyCards()
+      .subscribe((data: RequestData) => {
+        loading.dismiss();
+
+        if (data) {
+          this.user.cards = data.data.map(card => new Card(card));
+          this.setDefaultMates();
+        }
+      });
   }
 
   /**
@@ -64,19 +120,10 @@ export class MatesPage {
   }
 
   /**
-   * Get list header character by ordered card firstName
+   * Open action sheet
    * @param {Card} card
-   * @returns {string}
    */
-  cardAlpha (card: Card): string {
-    let char = card.firstName.charAt(0).toUpperCase(); // Get uppercase first character from card firstName
-
-    if (this.listHeaderChar !== char) {// check if last character equal new current character
-      this.listHeaderChar = char;
-
-      return char; // return new character
-    }
-
-    return null; // otherwise return null
+  toggleMate (card: Card = undefined): void {
+    this.events.publish('mate:activated', card);
   }
 }

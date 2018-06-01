@@ -1,4 +1,50 @@
-.tabs .tab-button[aria-selected=true] .tab-button-icon,
-.tabs .tab-button[aria-selected=true] .tab-button-text {
-  transform: none;
+.tabs {
+  .tabbar {
+    .tab-button {
+      background: no-repeat center 9px;
+      justify-content: flex-end;
+      padding-bottom: 9px;
+
+      &:nth-child(1) {
+        background-image: url(../assets/icon/menu-home.png);
+      }
+      &:nth-child(2) {
+        background-image: url(../assets/icon/menu-newsfeed.png);
+      }
+      &:nth-child(3) {
+        background-image: url(../assets/icon/menu-messages.png);
+      }
+      &:nth-child(4) {
+        background-image: url(../assets/icon/menu-alerts.png);
+      }
+      &:nth-child(5) {
+        background-image: url(../assets/icon/menu-settings.png);
+      }
+
+      &[aria-selected=true] {
+        .tab-button-text {
+          transform: none;
+        }
+        &:nth-child(1) {
+          background-image: url(../assets/icon/menu-home-active.png);
+        }
+        &:nth-child(2) {
+          background-image: url(../assets/icon/menu-newsfeed-active.png);
+        }
+        &:nth-child(3) {
+          background-image: url(../assets/icon/menu-messages-active.png);
+        }
+        &:nth-child(4) {
+          background-image: url(../assets/icon/menu-alerts-active.png);
+        }
+        &:nth-child(5) {
+          background-image: url(../assets/icon/menu-settings-active.png);
+        }
+      }
+
+      .tab-badge {
+        right: 5px;
+      }
+    }
+  }
 }

@@ -1,0 +1,14 @@
+<!-- Generated template for the ProfileImageComponent component -->
+<div class="avatar">
+  <ul *ngIf="loading && details.photo">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <img [hidden]="loading" (load)="onLoad()"
+       [src]="domain + 'uploads/profiles/images/' + details.photo + '.' + this.size + '.' + details.photoType"
+       alt="avatar" *ngIf="details.photo">
+  <strong *ngIf="!details.photo">{{ (details.firstName.charAt(0) + details.lastName.charAt(0)).toUpperCase() }}</strong>
+</div>

@@ -1,7 +1,7 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Newsfeed" tabIcon="paper"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Messages" tabIcon="chatboxes"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Alerts" tabIcon="alarm"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="Settings" tabIcon="settings"></ion-tab>
+  <ion-tab [root]="tab1Root" tabTitle="Home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Newsfeed"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Messages" [tabBadge]="messagesCount"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Alerts" [tabBadge]="notifications"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="Settings"></ion-tab>
 </ion-tabs>

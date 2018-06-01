@@ -6,7 +6,7 @@ page-profile-edit {
       right: 0;
       top: 0;
       width: 115px;
-      height: 135px;
+      height: 155px;
       padding: 15px;
       background: white;
       cursor: pointer;
@@ -22,7 +22,8 @@ page-profile-edit {
         height: 85px;
         left: 15px;
         top: 15px;
-        border-radius: 100%;
+        border-radius: 100px;
+        overflow: hidden;
 
         .icon {
           position: absolute;
@@ -42,6 +43,18 @@ page-profile-edit {
         text-align: center;
         font-size: 16px;
         margin: 8px 0;
+      }
+      label {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        margin: auto;
+        height: 115px;
+      }
+      input[type=file] {
+        opacity: 0;
+        visibility: hidden;
       }
     }
   }

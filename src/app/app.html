@@ -1,12 +1,14 @@
 <ion-nav [root]="rootPage"></ion-nav>
-<div class="action-sheet" [ngClass]="{'active': activeCard}" (click)="resetActiveCard($event)">
+<div class="action-sheet" [ngClass]="{'active': card}" (click)="resetCard($event)" *ngIf="card">
   <div class="sheet-effect" id="sheet-effect">
     <div class="sheet">
       <div class="sheet-info">
         <div class="sheet-top">
-          <div class="avatar"><img src="assets/imgs/avatar.png" alt="avatar"></div>
+          <div class="avatar-border">
+            <profile-image [card]="card"></profile-image>
+          </div>
           <div class="sheet-top-info">
-            <h3>Nicole Brown</h3>
+            <h3>{{ card.firstName }} {{ card.lastName }}</h3>
             <p>18 Mates</p>
           </div>
         </div>
@@ -19,7 +21,7 @@
                     <img src="assets/imgs/action-star.png">
                   </div>
                   <ion-card-content>
-                    <p>Recommend</p>
+                    <p>Profile</p>
                   </ion-card-content>
                 </ion-card>
               </ion-col>
@@ -57,7 +59,31 @@
           </ion-grid>
         </div>
       </div>
-      <button ion-button color="light" block large text-center (click)="resetActiveCard()">Cancel</button>
+      <button ion-button color="light" block large text-center (click)="resetCard()">Cancel</button>
+    </div>
+  </div>
+</div>
+<div class="recommend-sheet">
+  <div class="sheet-effect">
+    <div class="sheet">
+      <ion-list>
+        <ion-item>
+          <ion-label>Responsibility</ion-label>
+          <ion-checkbox item-right></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Responsibility</ion-label>
+          <ion-checkbox item-right></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Responsibility</ion-label>
+          <ion-checkbox item-right></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Responsibility</ion-label>
+          <ion-checkbox item-right></ion-checkbox>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
 </div>

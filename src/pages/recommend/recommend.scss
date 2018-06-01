@@ -1,0 +1,42 @@
+page-recommend {
+  .content {
+    padding: 20px;
+
+    .recommend {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+    .list {
+      .item {
+        background: #9daab9;
+        border-bottom: 1px solid #8494a7;
+
+        &:first-child {
+          border-radius: 10px 10px 0 0;
+        }
+        &:last-child {
+          border-radius: 0 0 10px 10px;
+        }
+        .item-inner {
+          border-bottom: 0 !important;
+        }
+
+        .icon {
+          color: #7a838d;
+        }
+      }
+    }
+
+    .grid {
+      .row {
+        margin: 0 -10px;
+
+        .col {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+profile-image {
+  ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    padding: 0;
+    width: 40px;
+    height: 8px;
+  }
+  ul li {
+    list-style: none;
+    width: 2px;
+    height: 8px;
+    background: color($colors, primary);
+    margin: 0 3px;
+    animation: animate .7s infinite alternate;
+  }
+  @keyframes animate {
+
+    0% {
+      transform: scaleY(1);
+    }
+    25% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+    75% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(4);
+    }
+
+  }
+  ul li:nth-child(1) {
+    animation-delay: .1s;
+  }
+  ul li:nth-child(2) {
+    animation-delay: .2s;
+  }
+  ul li:nth-child(3) {
+    animation-delay: .3s;
+  }
+  ul li:nth-child(4) {
+    animation-delay: .4s;
+  }
+  ul li:nth-child(5) {
+    animation-delay: .5s;
+  }
+}

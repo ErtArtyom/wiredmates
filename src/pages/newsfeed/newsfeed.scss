@@ -1,3 +1,61 @@
 page-newsfeed {
+  .card {
+    padding: 23px 0 0;
+    margin: 0;
+    width: 100%;
 
+    .item {
+      padding-left: 14px;
+      margin-bottom: 10px;
+
+      ion-avatar {
+        margin: 0 11px 0 0;
+
+        .avatar-border {
+          width: 55px;
+          height: 58px;
+          position: relative;
+        }
+      }
+      .item-inner {
+        .input-wrapper {
+          display: block;
+
+          .label {
+            margin: 0;
+
+            h2 {
+              font-size: 14px;
+              font-weight: bold;
+            }
+            .sub-title {
+              font-size: 14px;
+              color: #C4C4C4;
+              margin-bottom: 5px;
+            }
+            .sub-info {
+              vertical-align: middle;
+            }
+            .icon-recommended {
+              background: url(../assets/icon/recommended.png) no-repeat center;
+              width: 18px;
+              height: 23px;
+              display: inline-block;
+              vertical-align: middle;
+            }
+            .icon-box {
+              position: absolute;
+              right: 5px;
+              top: 0;
+
+              .icon {
+                font-size: 32px;
+                margin-top: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

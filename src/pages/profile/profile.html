@@ -6,13 +6,105 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ user.firstName }} {{ user.lastName.charAt(0) }}.</ion-title>
+    <ion-title>
+      <profile-title [card]="card"></profile-title>
+    </ion-title>
     <ion-buttons end *ngIf="isMyProfile">
-      <button (click)="edit()">
-        Edit
-      </button>
+      <button ion-button (click)="edit()">Edit</button>
     </ion-buttons>
   </ion-navbar>
+  <div class="hr"></div>
 </ion-header>
-<ion-content padding>
+<ion-content>
+  <profile-block [card]="card" [user]="user"></profile-block>
+  <div class="profile-content">
+    <ion-list no-border>
+      <ion-item *ngIf="isProfessional(card) && card.aboutMode && card.about">
+        <p class="black">{{ card.about }}</p>
+      </ion-item>
+      <ion-item *ngIf="card.phoneMode && card.phone">
+        <strong>Phone</strong>
+        <p>{{ card.phone || '[empty]' }}</p>
+      </ion-item>
+      <ion-item *ngIf="card.emailMode && card.email">
+        <strong>E-mail</strong>
+        <p>{{ card.email }}</p>
+      </ion-item>
+      <ion-item *ngIf="isMate(card) && card.birthdayMode && card.birthday">
+        <strong>E-mail</strong>
+        <p>{{ card.birthday }}</p>
+      </ion-item>
+      <ion-item *ngIf="isProfessional(card) && card.add_email1Mode && card.address1">
+        <strong>Address</strong>
+        <p>{{ card.address1 }}</p>
+      </ion-item>
+    </ion-list>
+    <ion-row *ngIf="isProfessional(card) && !isMyProfile">
+      <ion-col col-3>
+        <ion-card (click)="shareCard()">
+          <div class="img">
+            <img src="assets/icon/profile-share-card.png">
+          </div>
+          <ion-card-content>
+            <p>Share Card</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-3>
+        <ion-card (click)="message()">
+          <div class="img">
+            <img src="assets/icon/profile-message.png">
+          </div>
+          <ion-card-content>
+            <p>Message</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-3>
+        <ion-card (click)="requestCard()">
+          <div class="img">
+            <img src="assets/icon/profile-request-card.png">
+          </div>
+          <ion-card-content>
+            <p>Request Card</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-3>
+        <ion-card (click)="trustOpinion()">
+          <div class="img">
+            <img src="assets/icon/profile-trust-opinion.png">
+          </div>
+          <ion-card-content>
+            <p>Trust Opinion</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="profile-bottom">
+    <div class="profile-bottom-top">
+      <button ion-button block class="recommendation-button" (click)="recommend()" *ngIf="!isMyProfile">
+        Recommend {{ card.firstName }}
+      </button>
+      <p class="recommended-by">
+        Recommended by &nbsp;&nbsp;({{ card.cardRecommendations.count.all }})
+        <span>{{ card.cardRecommendations.count.mates }} Mates</span>
+      </p>
+      <ion-slides>
+        <ion-slide *ngFor="let card of card.cardRecommendations.profiles">
+          <div class="avatar-border">
+            <profile-image [card]="card" size="s"></profile-image>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div *ngIf="isProfessional(card)">
+      <ion-list>
+        <button ion-item *ngFor="let menu of menus | filterMenu" (click)="goPage(menu); $event.preventDefault()">
+          {{ menu.title }}
+        </button>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

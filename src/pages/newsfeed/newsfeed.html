@@ -5,14 +5,33 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>newsfeed</ion-title>
+    <ion-title>NewsFeed</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="filter()">Filter</button>
+    </ion-buttons>
   </ion-navbar>
-
+  <div class="hr"></div>
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <ion-card *ngFor="let feed of feeds">
+    <ion-item>
+      <ion-avatar item-start>
+        <div class="avatar-border">
+          <profile-image [card]="card"></profile-image>
+        </div>
+      </ion-avatar>
+      <h2>Stephan King</h2>
+      <p class="sub-title">Gavalian Studio</p>
+      <p class="sub-info">2d &nbsp;<i class="icon-recommended"></i> 22</p>
+      <div class="icon-box">
+        <ion-icon name="add-circle" item-end color="danger"></ion-icon>
+      </div>
+    </ion-item>
+    <ion-card-content>
+      <p>A former senior adviser to President Donald Trump’s election campaign pleaded guilty Friday to federal
+        conspiracy</p>
+    </ion-card-content>
+    <img src="assets/imgs/feed.png">
+  </ion-card>
 </ion-content>

@@ -1,0 +1,77 @@
+<!--
+  Generated template for the ProfileEmploymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ card.firstName }} {{ card.lastName.charAt(0) }}.</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="editing = true" *ngIf="!editing">Edit</button>
+      <button ion-button form="dataForm" *ngIf="editing && list.controls.length">Save</button>
+    </ion-buttons>
+  </ion-navbar>
+  <div class="hr"></div>
+</ion-header>
+<ion-content *ngIf="dataForm">
+  <form [formGroup]="dataForm" (ngSubmit)="saveProfileContactData()" id="dataForm">
+    <div formArrayName="list">
+      <h2 class="list-title">
+        Employment
+      </h2>
+      <div *ngFor="let group of list.controls; let i = index; let l = last">
+        <div [formGroupName]="i">
+          <ion-list>
+            <ion-item>
+              <ion-label floating>Job Title</ion-label>
+              <ion-input type="text" formControlName="title" [disabled]="!editing"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Name of Employer</ion-label>
+              <ion-input type="text" formControlName="employer" [disabled]="!editing"></ion-input>
+            </ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-item class="date-range-from">
+                    <ion-label stacked>Duration</ion-label>
+                    <ion-datetime placeholder="From" displayFormat="MMMM YYYY"
+                                  pickerFormat="MMMM YYYY" formControlName="durationFrom"
+                                  [disabled]="!editing"></ion-datetime>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item class="date-range-to">
+                    <ion-label stacked>Duration</ion-label>
+                    <ion-datetime placeholder="To" displayFormat="MMMM YYYY" pickerFormat="MMMM YYYY"
+                                  formControlName="durationTo" [disabled]="!editing"></ion-datetime>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-item class="add-item" *ngIf="editing">
+              <button ion-button icon-start outline (click)="addItem(); $event.preventDefault()" *ngIf="l">
+                <ion-icon name="add"></ion-icon>
+                add employment
+              </button>
+              <button ion-button icon-start item-end outline color="danger"
+                      (click)="removeProfileContactData(group.controls.id, i); $event.preventDefault()">
+                <ion-icon name="remove"></ion-icon>
+                remove
+              </button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+      <ion-list>
+        <ion-item class="add-item" *ngIf="!list.controls.length && editing">
+          <button ion-button icon-start outline (click)="addItem(); $event.preventDefault()">
+            <ion-icon name="add"></ion-icon>
+            add employment
+          </button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </form>
+</ion-content>

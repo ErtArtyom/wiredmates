@@ -15,7 +15,7 @@ import { Card } from '../models/card';
 export class MyApp {
   rootPage: any = MainPage;
 
-  public activeCard: Card;
+  public card: Card;
 
   constructor (platform: Platform,
                statusBar: StatusBar,
@@ -24,12 +24,14 @@ export class MyApp {
                private events: Events) {
     if (this.auth.token) {
       this.rootPage = TabsPage;
+
+      // this.auth.deleteAccount().subscribe(() => {});
     } else {
       this.rootPage = MainPage;
     }
 
     this.events.subscribe('mate:activated', (card) => {
-      this.activeCard = card;
+      this.card = card;
     });
 
     this.auth.onRoot()
@@ -47,9 +49,9 @@ export class MyApp {
    * Reset activated card
    * @param event
    */
-  resetActiveCard (event: any = null): void {
+  resetCard (event: any = null): void {
     if (!event) {
-      this.activeCard = undefined;
+      this.card = undefined;
       return;
     }
 
@@ -57,15 +59,15 @@ export class MyApp {
     const id = target.attributes.id;
 
     if (id && id.nodeValue === 'sheet-effect') {
-      this.activeCard = undefined;
+      this.card = undefined;
     }
   }
 
   mateSheetAction (action): void {
-    let activeCard = this.activeCard;
-    this.resetActiveCard();
+    let card = this.card;
+    this.resetCard();
 
-    this.events.publish('mate:' + action, activeCard);
+    this.events.publish('mate:' + action, card);
   }
 
 }

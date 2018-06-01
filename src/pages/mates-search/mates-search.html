@@ -8,6 +8,7 @@
   <ion-navbar>
     <ion-title>Search mates</ion-title>
   </ion-navbar>
+  <div class="hr"></div>
 </ion-header>
 <ion-content>
   <ion-searchbar [(ngModel)]="searchQuery"
@@ -17,15 +18,22 @@
                  placeholder="Search"
                  animated="true"
                  autocomplete="on"></ion-searchbar>
-  <ion-list [virtualScroll]="cards" [headerFn]="cardAlpha">
-    <ion-item-divider *virtualHeader="let header">
-      {{ header }}
+  <ion-list class="mates" *ngFor="let alpha of alphas">
+    <ion-item-divider>
+      {{ alpha }}
     </ion-item-divider>
-    <ion-item *virtualItem="let card" (click)="toggleMate(card)">
-      {{ card.firstName }}
-      <ion-icon name="add-circle" item-end (click)="addMate(card); $event.stopPropagation()"
-                *ngIf="!card.__added"></ion-icon>
-      <ion-icon name="checkmark-circle" item-end *ngIf="card.__added"></ion-icon>
+    <ion-item *ngFor="let card of (cards | filterAlpha: alpha)" (click)="toggleMate(card)">
+      <ion-avatar item-start>
+        <div class="avatar-border">
+          <profile-image [card]="card"></profile-image>
+        </div>
+      </ion-avatar>
+      <p>{{ card.firstName }} {{ card.lastName }}</p>
+      <ion-icon name="add-circle" item-end (click)="cardRequest(card); $event.stopPropagation()"
+                *ngIf="!card.requestSent && !card.inCards"></ion-icon>
+      <ion-icon name="checkmark-circle" item-end *ngIf="card.requestSent || card.inCards"
+                (click)="$event.stopPropagation()"></ion-icon>
+      <span *ngIf="card.requestSent && !card.inCards" (click)="$event.stopPropagation()">Request Sent</span>
     </ion-item>
   </ion-list>
 </ion-content>

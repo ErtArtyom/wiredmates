@@ -22,12 +22,17 @@
                  placeholder="Search"
                  animated="true"
                  autocomplete="on"></ion-searchbar>
-  <ion-list [virtualScroll]="user.cards" [headerFn]="cardAlpha">
-    <ion-item-divider *virtualHeader="let header">
-      {{ header }}
+  <ion-list class="mates" *ngFor="let alpha of alphas">
+    <ion-item-divider>
+      {{ alpha }}
     </ion-item-divider>
-    <ion-item *virtualItem="let card">
-      {{ card.name }}
+    <ion-item *ngFor="let card of (user.cards | filterAlpha: alpha)" (click)="toggleMate(card)">
+      <ion-avatar item-start>
+        <div class="avatar-border">
+          <profile-image [card]="card"></profile-image>
+        </div>
+      </ion-avatar>
+      <p>{{ card.firstName }} {{ card.lastName }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

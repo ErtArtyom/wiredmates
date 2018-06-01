@@ -1,3 +1,110 @@
 page-profile {
+  .profile-content {
+    margin-top: -45px;
+    padding: 0 10px;
 
+    .list {
+      background: white;
+      box-shadow: rgba(black, .03%) 0 3px 2px;
+
+      .item {
+        padding-left: 9px;
+        border-top: 0;
+
+        &:last-child .item-inner {
+          border-bottom: 0;
+        }
+        .item-inner {
+          padding: 10px 0;
+          border-bottom: 1px solid #E3E3E3;
+        }
+        .label {
+          margin: 0;
+        }
+        strong {
+          font-weight: normal;
+          font-size: 16px;
+        }
+        p {
+          margin-top: 9px;
+          font-size: 18px;
+          color: color($colors, primary);
+        }
+      }
+    }
+
+    .row {
+      margin-bottom: 20px;
+
+      .col {
+        padding: 0;
+
+        .card {
+          text-align: center;
+          margin: 0;
+          background: none;
+          box-shadow: none;
+          width: 100%;
+
+          &.disabled {
+            opacity: .3;
+          }
+          .img {
+            height: 50px;
+            position: relative;
+          }
+          img {
+            width: auto;
+            display: inline-block;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+          .card-content {
+            padding: 0;
+            p {
+              color: color($colors, primary);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .profile-bottom {
+    background: white;
+
+    .profile-bottom-top {
+      padding: 15px;
+
+      .recommendation-button {
+        height: 46px;
+        font-size: 17px;
+        border-radius: 7px;
+      }
+      .recommended-by {
+        font-size: 17px;
+        color: #707070;
+
+        span {
+          font-size: 17px;
+          color: color($colors, primary);
+        }
+      }
+
+      .swiper-slide {
+        width: auto !important;
+
+        .avatar-border {
+          width: 46px;
+          height: 46px;
+          position: relative;
+          overflow: hidden;
+        }
+      }
+    }
+  }
 }

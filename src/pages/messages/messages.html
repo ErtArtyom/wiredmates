@@ -10,16 +10,17 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
+  <ion-list class="messages">
     <ion-item *ngFor="let message of messages" (click)="openMessage(message)">
       <ion-avatar item-start>
-        <img src="assets/imgs/avatar.png">
+        <div class="avatar-border">
+          <profile-image [card]="details(message)"></profile-image>
+        </div>
       </ion-avatar>
-      <h2>Gail Stone</h2>
+      <h2>{{ details(message).firstName }} {{ details(message).lastName }}</h2>
       <p>{{ message.message }}</p>
+      <span item-end>{{ message.logTime | formatTime }}</span>
     </ion-item>
   </ion-list>
-  <div class="more">
-    <button ion-button (click)="moreMessages()">More</button>
-  </div>
+  <button *ngIf="more" ion-button full color="dark" outline class="log-out" (click)="moreMessages()">More</button>
 </ion-content>

@@ -1,0 +1,18 @@
+page-profile-patents {
+  .list[radio-group] {
+    margin: -17px 0 0;
+
+    .item.list-header {
+      background: white;
+      position: relative;
+      z-index: -1;
+      height: 45px;
+
+      .label {
+        margin-bottom: 0;
+        font-weight: normal;
+        color: black;
+      }
+    }
+  }
+}

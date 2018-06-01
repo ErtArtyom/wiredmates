@@ -6,23 +6,32 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>settings</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-navbar>
+  <div class="hr"></div>
 </ion-header>
 <ion-content>
   <ion-list>
     <ion-list-header>Account Settings</ion-list-header>
     <button ion-item (click)="profile()">Profile</button>
-    <button ion-item (click)="changeEmail()">Change E-mail Address</button>
+    <button ion-item (click)="profiles()" *ngIf="isProfessional(user)">My Profiles</button>
+    <button ion-item (click)="mates()">My Mates</button>
+    <button ion-item (click)="wires()">My Wires</button>
+    <button ion-item (click)="posts()" *ngIf="isProfessional(user)">My Posts</button>
+    <button ion-item (click)="dashboard()">Dashboard</button>
+    <ion-list-header>Login Settings</ion-list-header>
+    <button ion-item (click)="changeEmail()">Change E-mail</button>
     <button ion-item (click)="changePassword()">Change Password</button>
-    <button ion-item (click)="myRecommendations()">My Recommendations</button>
-    <button ion-item (click)="myFiles()">My Files</button>
-    <button ion-item (click)="myCards()">My Cards</button>
-    <button ion-item (click)="myPosts()">My Posts</button>
-    <button ion-item (click)="recommendedBy()">I’m Recommended by</button>
     <ion-list-header>Privacy Settings</ion-list-header>
-    <button ion-item (click)="visibility()">Visibility</button>
-    <button ion-item (click)="blockedContacts()">Blocked Contacts</button>
-    <button ion-item (click)="ignoredContacts()">Ignored contacts</button>
+    <button ion-item (click)="availability()">Availability</button>
+    <button ion-item (click)="appearanceRange()" *ngIf="isProfessional(user)">Appearance Range</button>
+    <button ion-item (click)="ignoreRecommendations()" *ngIf="isProfessional(user)">Ignore Recommendations</button>
+    <button ion-item (click)="blockedProfiles()">Blocked Profiles</button>
+    <button ion-item (click)="recallWiresCard()" *ngIf="isProfessional(user)">Recall Wires/Card</button>
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button full color="danger" outline class="log-out" (click)="logOut()">Log-out</button>
+  </ion-toolbar>
+</ion-footer>

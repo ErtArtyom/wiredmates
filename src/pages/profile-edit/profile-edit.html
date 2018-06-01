@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>profile-edit</ion-title>
+    <ion-title>{{ card.id ? card.firstName + ' ' + card.lastName.charAt(0) + '.' : 'New Profile' }}</ion-title>
     <ion-buttons end>
       <button ion-button form="profileEditForm">Save</button>
     </ion-buttons>
@@ -14,63 +14,103 @@
 </ion-header>
 <ion-content>
   <div class="profile-image" (click)="editImage()">
-    <img src="assets/imgs/profile-image.png" alt="avatar">
     <div class="image-cover">
+      <img [src]="card.photo" *ngIf="card.photo">
       <ion-icon name="camera"></ion-icon>
     </div>
-    <p>Edit</p>
+    <!--<p>Edit</p>-->
+    <label for="profile-image"></label>
+    <input id="profile-image" type="file" (change)="imageChange($event)"/>
   </div>
   <form [formGroup]="profileEditForm" (ngSubmit)="profileEditFormSubmit()" id="profileEditForm">
     <ion-list>
       <ion-item>
-        <ion-input type="text" formControlName="firstName" placeholder="First Name"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('firstName').valid"></ion-icon>
+        <ion-input type="text" formControlName="firstName" placeholder="First Name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="text" formControlName="middleName" placeholder="Middle or initials"></ion-input>
-        <ion-icon name="checkmark" item-end
-                  *ngIf="profileEditForm.get('middleName').valid && profileEditForm.get('middleName').value.length"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-input type="text" formControlName="lastName" placeholder="Last name"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('lastName').valid"></ion-icon>
+        <ion-input type="text" formControlName="lastName" placeholder="Last name"></ion-input>
       </ion-item>
-      <ion-item *ngIf="user.type === 'p'">
-        <ion-input type="text" formControlName="organization" placeholder="Organization"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('organization').valid"></ion-icon>
+      <ion-item *ngIf="isProfessional(user)">
+        <ion-label floating>Organization</ion-label>
+        <ion-input type="text" formControlName="organization"></ion-input>
+        <ion-checkbox item-end formControlName="organizationMode"></ion-checkbox>
       </ion-item>
-      <ion-item *ngIf="user.type === 'p'">
-        <ion-input type="text" formControlName="occupation" placeholder="Occupation"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('occupation').valid"></ion-icon>
+      <ion-item *ngIf="isProfessional(user)">
+        <ion-label floating>Occupation</ion-label>
+        <ion-input type="text" formControlName="occupation"></ion-input>
+        <ion-checkbox item-end formControlName="occupationMode"></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-input type="tel" formControlName="phone" placeholder="Phone" required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('phone').valid"></ion-icon>
+        <ion-label floating>Phone</ion-label>
+        <ion-input type="text" formControlName="phone" [textMask]="{mask: phoneMask}"></ion-input>
+        <ion-checkbox item-end formControlName="phoneMode"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="addItems['phone'] > 0">
+        <ion-label floating>Phone</ion-label>
+        <ion-input type="tel" formControlName="add_phone1" [textMask]="{mask: phoneMask}"></ion-input>
+        <ion-checkbox item-end formControlName="add_phone1Mode"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="addItems['phone'] > 1">
+        <ion-label floating>Phone</ion-label>
+        <ion-input type="tel" formControlName="add_phone2" [textMask]="{mask: phoneMask}"></ion-input>
+        <ion-checkbox item-end formControlName="add_phone2Mode"></ion-checkbox>
+      </ion-item>
+      <ion-item class="add-item" *ngIf="addItems['phone'] < 1 || addItems['phone'] < 2 && isProfessional(user)">
+        <button ion-button icon-start outline (click)="addItem('phone'); $event.preventDefault()">
+          <ion-icon name="add"></ion-icon>
+          add phone
+        </button>
       </ion-item>
       <ion-item>
-        <ion-input type="text" formControlName="phone" placeholder="Birthday"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('phone').valid"></ion-icon>
+        <ion-label floating>Birthday</ion-label>
+        <ion-datetime #birthday displayFormat="YYYY/MM/DD" formControlName="birthday"></ion-datetime>
+        <ion-checkbox item-end formControlName="birthdayMode"></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-input type="text" formControlName="email" placeholder="E-mail"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('email').valid"></ion-icon>
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+        <ion-checkbox item-end formControlName="emailMode"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="addItems['email'] > 0">
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="email" formControlName="add_email1"></ion-input>
+        <ion-checkbox item-end formControlName="add_email1Mode"></ion-checkbox>
+      </ion-item>
+      <ion-item class="add-item" *ngIf="addItems['email'] < 1 && isProfessional(user)">
+        <button ion-button icon-start outline (click)="addItem('email'); $event.preventDefault()">
+          <ion-icon name="add"></ion-icon>
+          add email
+        </button>
       </ion-item>
       <ion-item>
-        <ion-input type="text" formControlName="address1" placeholder="Address"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('address1').valid"></ion-icon>
+        <ion-label floating>Address</ion-label>
+        <ion-input type="text" formControlName="address1"></ion-input>
+        <ion-checkbox item-end formControlName="address1Mode"></ion-checkbox>
       </ion-item>
-      <ion-item>
-        <ion-input type="text" formControlName="address1" placeholder="About Me"
-                   required></ion-input>
-        <ion-icon name="checkmark" item-end *ngIf="profileEditForm.get('address1').valid"></ion-icon>
+      <ion-item *ngIf="addItems['address'] > 0">
+        <ion-label floating>Address</ion-label>
+        <ion-input type="text" formControlName="address2"></ion-input>
+        <ion-checkbox item-end formControlName="address2Mode"></ion-checkbox>
       </ion-item>
+      <ion-item class="add-item" *ngIf="addItems['address'] < 1 && isProfessional(user)">
+        <button ion-button icon-start outline (click)="addItem('address'); $event.preventDefault()">
+          <ion-icon name="add"></ion-icon>
+          add address
+        </button>
+      </ion-item>
+      <ion-item *ngIf="isProfessional(user)">
+        <ion-label floating>About Me</ion-label>
+        <ion-textarea formControlName="about"></ion-textarea>
+        <ion-checkbox item-end formControlName="aboutMode"></ion-checkbox>
+      </ion-item>
+      <div *ngIf="isProfessional(user)">
+        <button ion-item *ngFor="let item of menu" (click)="goPage(item); $event.preventDefault()">
+          {{ item.name }}
+        </button>
+      </div>
     </ion-list>
   </form>
 </ion-content>

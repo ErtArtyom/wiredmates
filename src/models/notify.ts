@@ -1,14 +1,11 @@
+import { Details } from './details';
+
 export class Notify {
   answer: number;
-  details: {
-    user: {
-      firstName: string;
-      lastName: string;
-    }
-  };
+  details: Details;
   id: number;
-  isRead: number;
-  logTime: Date;
+  readTime: Date | number;
+  logTime: Date | number;
   obj1: number;
   obj2: number;
   receiverID: number;
@@ -19,14 +16,18 @@ export class Notify {
     notify = notify || {};
 
     this.answer = notify.answer || null;
-    this.details = notify.details || {user: {firstName: '', lastName: ''}};
+    this.details = new Details(notify.details);
     this.id = notify.id || null;
-    this.isRead = notify.isRead || null;
-    this.logTime = notify.logTime ? new Date(notify.logTime) : null;
+    this.readTime = notify.readTime ? new Date(notify.readTime * 1000) : 0;
+    this.logTime = notify.logTime ? new Date(notify.logTime * 1000) : 0;
     this.obj1 = notify.obj1 || null;
     this.obj2 = notify.obj2 || null;
     this.receiverID = notify.receiverID || null;
     this.senderID = notify.senderID || null;
     this.type = notify.type || '';
+  }
+
+  static getNotifyMessage (type: string): string {
+    return type;
   }
 }
